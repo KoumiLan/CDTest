@@ -40,8 +40,7 @@ jobs:
                 context: .
                 file: ./Dockerfile
                 push: true  
-                # tags: ghcr.io/royhung870323/cdtest/test:latest
-                tags: ghcr.io/${{ github.repository }}:latest
+                tags: ghcr.io/royhung870323/cdtest/test:latest
                 # tags: |
                 #   ghcr.io/royhung870323/cdtest/test:latest
                 #   ghcr.io/royhung870323/cdtest/test:${{ github.run_number }}
