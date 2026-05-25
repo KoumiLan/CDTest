@@ -57,6 +57,7 @@ jobs:
                 key: ${{ runner.os }}-playwright-${{ hashFiles('**/playwright.ps1') }}
 
             - name: 步驟 5-2 - 安裝 Playwright 瀏覽器元件
+              if: steps.playwright-cache.outputs.cache-hit != 'true'
               run: pwsh CDTestPlaywright/bin/${{ env.Configuration }}/net8.0/playwright.ps1 install
 
             - name: 步驟 5-3 - 在背景啟動 Web 網頁主程式
