@@ -32,12 +32,18 @@ jobs:
             - name: 步驟 4 - 編譯專案 (Build)
               run: dotnet build ${{ env.Sln }} --configuration ${{ env.Configuration }} --no-restore
 
-            # - name: 步驟 5-1 - 執行單元測試 (Test)
+            # - name: 步驟 5 - 執行單元測試 (Test)
             #   run: dotnet test ${{ env.UnitTest }} --configuration ${{ env.Configuration }} --no-build --verbosity normal
+
+            # - name: 步驟 5 - 執行Playwright (Test)
+            #   run: |
+            #     pwsh CDTestPlaywright/bin/${{ env.Configuration }}/net8.0/playwright.ps1 install
+            #     dotnet run --project ${{ env.WebProject }} --configuration ${{ env.Configuration }} --no-build --urls "http://localhost:5114" &
+            #     dotnet test ${{ env.Playwright }} --configuration ${{ env.Configuration }} --no-build --verbosity normal
         
             - name: 步驟 5-1 - 安裝 Playwright 瀏覽器元件
               run: pwsh CDTestPlaywright/bin/${{ env.Configuration }}/net8.0/playwright.ps1 install
-              
+
             - name: 步驟 5-2 - 在背景啟動 Web 網頁主程式
               run: dotnet run --project ${{ env.WebProject }} --configuration ${{ env.Configuration }} --no-build --urls "http://localhost:5114" &
               
